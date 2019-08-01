@@ -13,7 +13,8 @@ entity top_level is
            btnl            : in  STD_LOGIC;
            btnc            : in  STD_LOGIC;
            btnr            : in  STD_LOGIC;
-           config_finished : out STD_LOGIC;
+           config_finished_l : out STD_LOGIC;
+           config_finished_r : out STD_LOGIC;
            
            vga_hsync : out  STD_LOGIC;
            vga_vsync : out  STD_LOGIC;
@@ -21,15 +22,25 @@ entity top_level is
            vga_g     : out  STD_LOGIC_vector(3 downto 0);
            vga_b     : out  STD_LOGIC_vector(3 downto 0);
            
-           ov7670_pclk  : in  STD_LOGIC;
-           ov7670_xclk  : out STD_LOGIC;
-           ov7670_vsync : in  STD_LOGIC;
-           ov7670_href  : in  STD_LOGIC;
-           ov7670_data  : in  STD_LOGIC_vector(7 downto 0);
-           ov7670_sioc  : out STD_LOGIC;
-           ov7670_siod  : inout STD_LOGIC;
-           ov7670_pwdn  : out STD_LOGIC;
-           ov7670_reset : out STD_LOGIC
+           ov7670_pclk_l  : in  STD_LOGIC;
+           ov7670_xclk_l  : out STD_LOGIC;
+           ov7670_vsync_l : in  STD_LOGIC;
+           ov7670_href_l  : in  STD_LOGIC;
+           ov7670_data_l  : in  STD_LOGIC_vector(7 downto 0);
+           ov7670_sioc_l  : out STD_LOGIC;
+           ov7670_siod_l  : inout STD_LOGIC;
+           ov7670_pwdn_l  : out STD_LOGIC;
+           ov7670_reset_l : out STD_LOGIC;
+           
+           ov7670_pclk_r  : in  STD_LOGIC;
+           ov7670_xclk_r  : out STD_LOGIC;
+           ov7670_vsync_r : in  STD_LOGIC;
+           ov7670_href_r  : in  STD_LOGIC;
+           ov7670_data_r  : in  STD_LOGIC_vector(7 downto 0);
+           ov7670_sioc_r  : out STD_LOGIC;
+           ov7670_siod_r  : inout STD_LOGIC;
+           ov7670_pwdn_r  : out STD_LOGIC;
+           ov7670_reset_r : out STD_LOGIC
            );
 end top_level;
 
@@ -61,6 +72,7 @@ architecture Behavioral of top_level is
 		xclk : OUT std_logic
 		);
 	END COMPONENT;
+	
 
 	COMPONENT debounce
 	PORT(
@@ -108,7 +120,7 @@ architecture Behavioral of top_level is
 
 	component clocking
 	port (
-  CLK_100           : in     std_logic;
+    CLK_100         : in     std_logic;
     -- Clock out ports
     CLK_50          : out    std_logic;
     CLK_25          : out    std_logic);
@@ -190,15 +202,26 @@ begin
 		o   => resend
 	);
 
-	Inst_ov7670_controller: ov7670_controller PORT MAP(
+	Inst_ov7670_controller_left: ov7670_controller PORT MAP(
 		clk             => clk_camera,
 		resend          => resend,
-		config_finished => config_finished,
-		sioc            => ov7670_sioc,
-		siod            => ov7670_siod,
-		reset           => ov7670_reset,
-		pwdn            => ov7670_pwdn,
-		xclk            => ov7670_xclk
+		config_finished => config_finished_l,
+		sioc            => ov7670_sioc_l,
+		siod            => ov7670_siod_l,
+		reset           => ov7670_reset_l,
+		pwdn            => ov7670_pwdn_l,
+		xclk            => ov7670_xclk_l
+	);
+	
+	Inst_ov7670_controller_right: ov7670_controller PORT MAP(
+		clk             => clk_camera,
+		resend          => resend,
+		config_finished => config_finished_r,
+		sioc            => ov7670_sioc_r,
+		siod            => ov7670_siod_r,
+		reset           => ov7670_reset_r,
+		pwdn            => ov7670_pwdn_r,
+		xclk            => ov7670_xclk_r
 	);
 	size_select <= btnl&btnr;
 	
@@ -217,19 +240,31 @@ begin
 		clkb   => clk_vga,
 		doutb        => rddata,
       
-		clka   => ov7670_pclk,
+		clka   => ov7670_pclk_l,
 		addra => wr_addr,
 		dina      => wrdata,
 		wea      => wren
 	);
 	
-	Inst_ov7670_capture: ov7670_capture PORT MAP(
-		pclk  => ov7670_pclk,
+--	Inst_ov7670_capture_l: ov7670_capture PORT MAP(
+--		pclk  => ov7670_pclk_l,
+--      rez_160x120 => rez_160x120,
+--      rez_320x240 => rez_320x240,
+--		vsync => ov7670_vsync_l,
+--		href  => ov7670_href_l,
+--		d     => ov7670_data_l,
+--		addr  => wraddress,
+--		dout  => wrdata,
+--		we    => wren(0)
+--	);
+	
+	Inst_ov7670_capture_r: ov7670_capture PORT MAP(
+		pclk  => ov7670_pclk_r,
       rez_160x120 => rez_160x120,
       rez_320x240 => rez_320x240,
-		vsync => ov7670_vsync,
-		href  => ov7670_href,
-		d     => ov7670_data,
+		vsync => ov7670_vsync_r,
+		href  => ov7670_href_r,
+		d     => ov7670_data_r,
 		addr  => wraddress,
 		dout  => wrdata,
 		we    => wren(0)
