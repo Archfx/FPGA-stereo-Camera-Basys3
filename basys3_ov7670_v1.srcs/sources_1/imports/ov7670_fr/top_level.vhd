@@ -155,18 +155,23 @@ architecture Behavioral of top_level is
    signal vSync      : std_logic;
    signal nSync      : std_logic;
    
-   signal wraddress  : std_logic_vector(18 downto 0);
-   signal wrdata     : std_logic_vector(11 downto 0);
+   signal wraddress_l  : std_logic_vector(18 downto 0);
+   signal wrdata_l     : std_logic_vector(11 downto 0);
+   signal wraddress_r  : std_logic_vector(18 downto 0);
+   signal wrdata_r     : std_logic_vector(11 downto 0);
    
-   signal rdaddress  : std_logic_vector(18 downto 0);
-   signal rddata     : std_logic_vector(11 downto 0);
+   signal rdaddress_l  : std_logic_vector(18 downto 0);
+   signal rddata_l     : std_logic_vector(11 downto 0);
+   signal rdaddress_r  : std_logic_vector(18 downto 0);
+   signal rddata_r     : std_logic_vector(11 downto 0);
+   
    signal red,green,blue : std_logic_vector(7 downto 0);
    signal activeArea : std_logic;
    
    signal rez_160x120 : std_logic;
    signal rez_320x240 : std_logic;
    signal size_select: std_logic_vector(1 downto 0);
-   signal rd_addr,wr_addr  : std_logic_vector(16 downto 0);
+   signal rd_addr_l,wr_addr_l,rd_addr_r,wr_addr_r  : std_logic_vector(16 downto 0);
 begin
    vga_r <= red(7 downto 4);
    vga_g <= green(7 downto 4);
@@ -226,52 +231,74 @@ begin
 	size_select <= btnl&btnr;
 	
     with size_select select 
-    rd_addr <= rdaddress(18 downto 2) when "00",
-        rdaddress(16 downto 0) when "01",
-        rdaddress(16 downto 0) when "10",
-        rdaddress(16 downto 0) when "11";
+    rd_addr_l <= rdaddress_l(18 downto 2) when "00",
+        rdaddress_l(16 downto 0) when "01",
+        rdaddress_l(16 downto 0) when "10",
+        rdaddress_l(16 downto 0) when "11";
+    with size_select select
+    rd_addr_r <= rdaddress_r(18 downto 2) when "00",
+        rdaddress_r(16 downto 0) when "01",
+        rdaddress_r(16 downto 0) when "10",
+        rdaddress_r(16 downto 0) when "11";
    with size_select select 
-    wr_addr <= wraddress(18 downto 2) when "00",
-            wraddress(16 downto 0) when "01",
-            wraddress(16 downto 0) when "10",
-            wraddress(16 downto 0) when "11";
-	Inst_frame_buffer: frame_buffer PORT MAP(
-		addrb => rd_addr,
+    wr_addr_r <= wraddress_r(18 downto 2) when "00",
+            wraddress_r(16 downto 0) when "01",
+            wraddress_r(16 downto 0) when "10",
+            wraddress_r(16 downto 0) when "11";
+   with size_select select 
+    wr_addr_l <= wraddress_l(18 downto 2) when "00",
+            wraddress_l(16 downto 0) when "01",
+            wraddress_l(16 downto 0) when "10",
+            wraddress_l(16 downto 0) when "11";
+            
+	Inst_frame_buffer_l: frame_buffer PORT MAP(
+		addrb => rd_addr_l,
 		clkb   => clk_vga,
-		doutb        => rddata,
+		doutb        => rddata_l,
       
 		clka   => ov7670_pclk_l,
-		addra => wr_addr,
-		dina      => wrdata,
+		addra => wr_addr_l,
+		dina      => wrdata_l,
 		wea      => wren
 	);
 	
---	Inst_ov7670_capture_l: ov7670_capture PORT MAP(
---		pclk  => ov7670_pclk_l,
---      rez_160x120 => rez_160x120,
---      rez_320x240 => rez_320x240,
---		vsync => ov7670_vsync_l,
---		href  => ov7670_href_l,
---		d     => ov7670_data_l,
---		addr  => wraddress,
---		dout  => wrdata,
---		we    => wren(0)
---	);
+	Inst_frame_buffer_r: frame_buffer PORT MAP(
+		addrb => rd_addr_r,
+		clkb   => clk_vga,
+		doutb        => rddata_r,
+      
+		clka   => ov7670_pclk_l,
+		addra => wr_addr_r,
+		dina      => wrdata_r,
+		wea      => wren
+	);
 	
-	Inst_ov7670_capture_r: ov7670_capture PORT MAP(
-		pclk  => ov7670_pclk_r,
+	Inst_ov7670_capture_l: ov7670_capture PORT MAP(
+		pclk  => ov7670_pclk_l,
       rez_160x120 => rez_160x120,
       rez_320x240 => rez_320x240,
-		vsync => ov7670_vsync_r,
-		href  => ov7670_href_r,
-		d     => ov7670_data_r,
-		addr  => wraddress,
-		dout  => wrdata,
+		vsync => ov7670_vsync_l,
+		href  => ov7670_href_l,
+		d     => ov7670_data_l,
+		addr  => wraddress_l,
+		dout  => wrdata_l,
 		we    => wren(0)
 	);
+	
+--	Inst_ov7670_capture_r: ov7670_capture PORT MAP(
+--		pclk  => ov7670_pclk_r,
+--      rez_160x120 => rez_160x120,
+--      rez_320x240 => rez_320x240,
+--		vsync => ov7670_vsync_r,
+--		href  => ov7670_href_r,
+--		d     => ov7670_data_r,
+--		addr  => wraddress_r,
+--		dout  => wrdata_r,
+--		we    => wren(0)
+--	);
 
 	Inst_RGB: RGB PORT MAP(
-		Din => rddata,
+		Din => rddata_l,
 		Nblank => activeArea,
 		R => red,
 		G => green,
@@ -284,7 +311,7 @@ begin
       rez_320x240 => rez_320x240,
 		enable => activeArea,
       vsync  => vsync,
-		address => rdaddress
+		address => rdaddress_l
 	);
 
 end Behavioral;
