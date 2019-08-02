@@ -10,8 +10,8 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity VGA is
     Port ( CLK25 : in  STD_LOGIC;									-- Horloge d'entrée de 25 MHz							
 			  clkout : out  STD_LOGIC;					-- Horloge de sortie vers le ADV7123 et l'écran TFT
-           rez_160x120 : IN std_logic;
-           rez_320x240 : IN std_logic;
+--           rez_160x120 : IN std_logic;
+--           rez_320x240 : IN std_logic;
            Hsync,Vsync : out  STD_LOGIC;						-- les deux signaux de synchronisation pour l'écran VGA
 			  Nblank : out  STD_LOGIC;								-- signal de commande du convertisseur N/A ADV7123
            activeArea : out  STD_LOGIC;
@@ -47,38 +47,38 @@ begin
                   Vcnt <= "0000000000";
                   activeArea <= '1';
                else
-                  if rez_160x120 = '1' then
-                     if vCnt < 120-1 then
-                        activeArea <= '1';
-                     end if;
-                  elsif rez_320x240 = '1' then
+--                  if rez_160x120 = '1' then
+--                     if vCnt < 120-1 then
+--                        activeArea <= '1';
+--                     end if;
+--                  elsif rez_320x240 = '1' then
                      if vCnt < 240-1 then
                         activeArea <= '1';
                      end if;
-                  else
-                     if vCnt < 480-1 then
-                        activeArea <= '1';
-                     end if;
-                  end if;
+--                  else
+--                     if vCnt < 480-1 then
+--                        activeArea <= '1';
+--                     end if;
+--                  end if;
                   Vcnt <= Vcnt+1;
                end if;
 				else
-               if rez_160x120 = '1' then
-                  if hcnt = 160-1 then
-                     activeArea <= '0';
-                  end if;
-               elsif rez_320x240 = '1' then
+--               if rez_160x120 = '1' then
+--                  if hcnt = 160-1 then
+--                     activeArea <= '0';
+--                  end if;
+--               elsif rez_320x240 = '1' then
                   if hcnt = 320-1 then
                      activeArea <= '0';
                   end if;
-               else
-                  if hcnt = 640-1 then
-                     activeArea <= '0';
-                  end if;
+--               else
+--                  if hcnt = 640-1 then
+--                     activeArea <= '0';
+--                  end if;
                end if;
 					Hcnt <= Hcnt + 1;
 				end if;
-			end if;
+--			end if;
 		end process;
 ----------------------------------------------------------------
 

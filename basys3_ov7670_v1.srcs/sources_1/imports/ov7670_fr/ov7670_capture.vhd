@@ -16,19 +16,19 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity ov7670_capture is
     Port ( pclk  : in   STD_LOGIC;
-           rez_160x120 : IN std_logic;
-           rez_320x240 : IN std_logic;
+--           rez_160x120 : IN std_logic;
+--           rez_320x240 : IN std_logic;
            vsync : in   STD_LOGIC;
            href  : in   STD_LOGIC;
            d     : in   STD_LOGIC_VECTOR (7 downto 0);
-           addr  : out  STD_LOGIC_VECTOR (18 downto 0);
+           addr  : out  STD_LOGIC_VECTOR (16 downto 0);
            dout  : out  STD_LOGIC_VECTOR (11 downto 0);
            we    : out  STD_LOGIC);
 end ov7670_capture;
 
 architecture Behavioral of ov7670_capture is
    signal d_latch      : std_logic_vector(15 downto 0) := (others => '0');
-   signal address      : STD_LOGIC_VECTOR(18 downto 0) := (others => '0');
+   signal address      : STD_LOGIC_VECTOR(16 downto 0) := (others => '0');
    signal line         : std_logic_vector(1 downto 0)  := (others => '0');
    signal href_last    : std_logic_vector(6 downto 0)  := (others => '0');
    signal we_reg       : std_logic := '0';
@@ -80,21 +80,21 @@ capture_process: process(pclk)
             line         <= (others => '0');
          else
             -- If not, set the write enable whenever we need to capture a pixel
-            if (rez_160x120 = '1' and href_last(6) = '1') or
-               (rez_320x240 = '1' and href_last(2) = '1') or 
-               (rez_160x120 = '0' and rez_320x240  = '0' and href_last(0) = '1') then
-               
-               if rez_160x120 = '1' then
-                  if line = "10" then
-                     we_reg <= '1';
-                   end if;
-               elsif rez_320x240 = '1' then
+--            if (rez_160x120 = '1' and href_last(6) = '1') or
+--               (rez_320x240 = '1' and href_last(2) = '1') or 
+--               (rez_160x120 = '0' and rez_320x240  = '0' and href_last(0) = '1') then
+            if (href_last(2) = '1') then
+--               if rez_160x120 = '1' then
+--                  if line = "10" then
+--                     we_reg <= '1';
+--                   end if;
+--               elsif rez_320x240 = '1' then
                   if line(1) = '1' then
                      we_reg <= '1';
                    end if;
-               else
-                   we_reg <= '1';
-               end if;
+--               else
+--                   we_reg <= '1';
+--               end if;
                href_last <= (others => '0');
             else
                href_last <= href_last(href_last'high-1 downto 0) & latched_href;
