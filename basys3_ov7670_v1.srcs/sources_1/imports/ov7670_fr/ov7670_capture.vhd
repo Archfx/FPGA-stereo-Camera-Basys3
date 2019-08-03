@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------
--- Engineer: Mike Field <hamster@snap.net.nz>
+-- Engineer: Aruna Jayasena <aruna.15@cse.mrt.ac.lk> 
 -- 
 -- Description: Captures the pixels coming from the OV7670 camera and 
 --              Stores them in block RAM

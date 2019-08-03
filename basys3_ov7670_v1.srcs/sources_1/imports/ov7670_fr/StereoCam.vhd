@@ -1,14 +1,14 @@
 ----------------------------------------------------------------------------------
--- Engineer: Mike Field <hamster@snap.net.nz>
+-- Engineer: Aruna Jayasena <aruna.15@cse.mrt.ac.lk>
 -- 
--- Module Name: top_level - Behavioral 
--- Description: Top level module of the Zedboard OV7670 design
+-- Module Name: StereoCam - Behavioral 
+-- Description: Top level module For the disparity implementation using dual OV7670 camara modules on Basys 3
 --
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity top_level is
+entity StereoCam is
     Port ( clk100          : in  STD_LOGIC;
            btnl            : in  STD_LOGIC;
            btnc            : in  STD_LOGIC;
@@ -42,9 +42,9 @@ entity top_level is
            ov7670_pwdn_r  : out STD_LOGIC;
            ov7670_reset_r : out STD_LOGIC
            );
-end top_level;
+end StereoCam;
 
-architecture Behavioral of top_level is
+architecture Behavioral of StereoCam is
 
 	COMPONENT VGA
 	PORT(
