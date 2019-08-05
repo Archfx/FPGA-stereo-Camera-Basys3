@@ -49,8 +49,8 @@ architecture Behavioral of StereoCam is
 	COMPONENT VGA
 	PORT(
 		CLK25 : IN std_logic;    
---      rez_160x120 : IN std_logic;
---      rez_320x240 : IN std_logic;
+      rez_160x120 : IN std_logic;
+      rez_320x240 : IN std_logic;
 		Hsync : OUT std_logic;
 		Vsync : OUT std_logic;
 		Nblank : OUT std_logic;      
@@ -89,6 +89,7 @@ architecture Behavioral of StereoCam is
       addra : IN STD_LOGIC_VECTOR(16 DOWNTO 0);
       dina : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
       clkb : IN STD_LOGIC;
+      enb : IN STD_LOGIC;
       addrb : IN STD_LOGIC_VECTOR(16 DOWNTO 0);
       doutb : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
     );
@@ -169,8 +170,8 @@ architecture Behavioral of StereoCam is
    signal red,green,blue : std_logic_vector(7 downto 0);
    signal activeArea : std_logic;
    
---   signal rez_160x120 : std_logic;
---   signal rez_320x240 : std_logic;
+   signal rez_160x120 : std_logic;
+   signal rez_320x240 : std_logic;
    signal size_select: std_logic_vector(1 downto 0);
    signal rd_addr_l,wr_addr_l,rd_addr_r,wr_addr_r  : std_logic_vector(16 downto 0);
 begin
@@ -178,8 +179,8 @@ begin
    vga_g <= green(7 downto 4);
    vga_b <= blue(7 downto 4);
    
---   rez_160x120 <= btnl;
---   rez_320x240 <= '1';--btnr;
+   rez_160x120 <= '0';
+   rez_320x240 <= '1';--btnr;
  your_instance_name : clocking
      port map
       (-- Clock in ports
@@ -192,8 +193,8 @@ begin
    
 	Inst_VGA: VGA PORT MAP(
 		CLK25      => clk_vga,
---      rez_160x120 => rez_160x120,
---      rez_320x240 => rez_320x240,
+      rez_160x120 => rez_160x120,
+      rez_320x240 => rez_320x240,
 		clkout     => open,
 		Hsync      => vga_hsync,
 		Vsync      => vsync,
@@ -256,7 +257,7 @@ begin
 		addrb => rd_addr_l,
 		clkb   => clk_vga,
 		doutb        => rddata_l,
-      
+        enb    =>'1',
 		clka   => ov7670_pclk_l,
 		addra => wr_addr_l,
 		dina      => wrdata_l(7 downto 4),
@@ -267,7 +268,7 @@ begin
 		addrb => rd_addr_r,
 		clkb   => clk_vga,
 		doutb        => rddata_r,
-      
+        enb    =>'1',
 		clka   => ov7670_pclk_r,
 		addra => wr_addr_r,
 		dina      => wrdata_r(7 downto 4),
