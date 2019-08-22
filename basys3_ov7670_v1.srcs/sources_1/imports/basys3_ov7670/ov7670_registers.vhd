@@ -36,7 +36,7 @@ begin
 			case address is
 				when x"00" => sreg <= x"1280"; -- COM7   Reset
 				when x"01" => sreg <= x"1280"; -- COM7   Reset
-				when x"02" => sreg <= x"1204"; -- COM7   Size & RGB output
+				when x"02" => sreg <= x"1200";--x"1204"; -- COM7   Size & RGB output
 				when x"03" => sreg <= x"1100"; -- CLKRC  Prescaler - Fin/(1+1)
 				when x"04" => sreg <= x"0C00"; -- COM3   Lots of stuff, enable scaling, all others off
 				when x"05" => sreg <= x"3E00"; -- COM14  PCLK scaling off
