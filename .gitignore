@@ -24,6 +24,8 @@ basys3_ov7670_v1.cache/
 !*.bit
 !*.XDC
 !*.stl
+!*.png
+!*.jpg
 #########
 #IP files
 #########
