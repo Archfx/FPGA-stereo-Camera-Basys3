@@ -23,6 +23,7 @@ basys3_ov7670_v1.cache/
 *.edif
 !*.bit
 !*.XDC
+!*.stl
 #########
 #IP files
 #########
