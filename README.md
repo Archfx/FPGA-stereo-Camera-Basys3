@@ -100,14 +100,39 @@ Then this algorithm is directly ported to Verilog. The implementation was done u
 
 The cameras that were used for this project is very inexpensive OV7670 modules. They are commonly available and the output can be configured to 8bit parallel.
 These cameras are using I2C interface to communicate with the master. We can configure the camera output by changing the internal registers of the cameras. 
-
-Camera PINOUTS
-Connection with BASYS 3
-
+<p align="center">
+  <img src="https://github.com/Archfx/FPGA-stereo-Camera-Basys3/blob/master/PinOuts/Connector%20pins.jpg">
+     <p align="center">
+     <em>Pmod connections with Cameras</em>
+     </p>
+</p>
+<p align="center">
+  <img src="https://github.com/Archfx/FPGA-stereo-Camera-Basys3/blob/master/PinOuts/basys3.png">
+     <p align="center">
+     <em>Pmod connector pinouts</em>
+     </p>
+</p>
+<p align="center">
+  <img src="https://github.com/Archfx/FPGA-stereo-Camera-Basys3/blob/master/PinOuts/pMod.png">
+     <p align="center">
+     <em>Basys3 Pmod pinout diagram</em>
+     </p>
+</p>
 This repo contains VHDL implementation for image read from two cameras and displaying the average of two images from the VGA output.
 
-OV7670 dual camera mount was designed using a cad tool and 3D printed to mount the cameras. STL files for camera mount can be found from here.
-
+OV7670 dual camera mount was designed using a cad tool and 3D printed to mount the cameras. STL files for camera mount can be found from [here](https://github.com/Archfx/FPGA-stereo-Camera-Basys3/tree/master/CamMountCAD).
+<p align="center">
+  <img width="230" height="200" src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/cad.png">
+     <p align="center">
+     <em>CAD Stereo camera mount</em>
+     </p>
+</p>
+<p align="center">
+  <img width="800" src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/assembled.jpg">
+     <p align="center">
+     <em>Hardware connected together</em>
+     </p>
+</p>
 
 ## Real-time depth map generation on FPGA
 
@@ -131,3 +156,4 @@ Following are recorded output from the monitor using a camera.
 </p>
 
 In both the demonstrations you may observe that camera exposure changes with the environement changes. Improvements are needed to fix this. It will reduce the noise in the output.
+Auto Exposure Corrction(AEC) has been disabled from the cameras by editing the internal register modules. After disableing AEC, the result was much more clear and the noise was removed from the background. 
