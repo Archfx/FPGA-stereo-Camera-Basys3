@@ -179,13 +179,13 @@ If we observe closely left camera brightness is too lower than the right hand si
 
 Basys 3 is a entry level FPGA board. Hence it is not designed for image processing tasks. The Challange here was to run complex image processing algorithm on limited resources. Basys 3 Trainer FPGA board consists of following resources.
 ```markdown
-|   |   |
+| Resource  |   |
 |---|---|
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
+| LUT  |   |
+| LUTRAM  |   |
+| FF  |   |
+| BRAM  |   |
+| DSP  |   |
 |   |   |
 |   |   |
 |   |   |
