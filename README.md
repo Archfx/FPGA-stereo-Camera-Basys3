@@ -129,7 +129,7 @@ Following are recorded output from the monitor using a camera.</p>
 
 <p>In both the demonstrations you may observe that camera exposure changes with the environement changes. Improvements are needed to fix this. It will reduce the noise in the output.<br>
 Auto Exposure Correction (AEC) has been disabled from the cameras by editing the internal register modules. After disableing AEC, the result was much more clear and the noise was removed from the background.</p>
-<p><strong>After image rectification is added to the System</strong></p>
+<p><strong>Image Rectification and Camera Caliberation</strong></p>
 <p>The offsets of the two cameras are fixed using a image rectification module. Although the Automatic Exposure Caliberation is turned of one of the Cameras output is very darker while the other one is too bright. This should be corrected for the Disparity aldorithm to work correctly.</p>
 <p align="center">
   <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/Demo_rectified_Colorbal_issue.gif">
