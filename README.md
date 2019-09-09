@@ -236,8 +236,28 @@ The main bottle necks were the Block memory and the LUTRAM.  Basys 3 has 1,800Kb
 
 We cant process them images while it is in the BRAM because BRAM is FIFO (First In First Out) memory device. Therefor the Image sholud be loaded in a cache so that data can be accessed parallely. The cache can be created using the LUTRAM. The problem we have is the LUTRAM is insufficient to store two 320x240 images. Even the 160x120 size images cannot be stored to support SAD algorithm to compare.
 
+<p align="center">
+  <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/LUT_problem.png">
+  <p align="center">
+  <em>LUT bottleneck for 160x120 resolution</em>
+  </p>
+</p>
+
 Therefore a blockwise disparity calculation was used in order to utilize the full 320x240 resolution with available resources. The caching is done in block wise and then the caculated dispairty values are saved to the disparity_buffer circuit.
 
 ```diff
-- Although thir are 9600 LUTRAMS are available we cannot ulilize 100% of that due to routing issues. 
+- Although there are 9600 LUTRAMS are available we cannot ulilize 100% of that due to routing issues. 
+<p align="center">
 ```
+
+  <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/routing_problm.png">
+  <p align="center">
+  <em>Routing failure</em>
+  </p>
+  
+</p>
+<img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/utilization.png">
+  <p align="center">
+  <em>Blockwise disparity calculation Utilization</em>
+  </p>
+</p>
