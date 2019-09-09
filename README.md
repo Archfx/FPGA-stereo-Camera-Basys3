@@ -36,10 +36,9 @@ Hardware description languages(HDL) are not meant to be for rapid prototyping. T
 Sum of Absolute difference and Sum of Squared Difference Disparity calculation theory is based on a simple geometric concept. Where they use the stereo vision to calculate the distance to the objects. For the implementation, two cameras should be on the same plane and they should not have any vertical offsets in their alignments.
 
 
-<img src="https://latex.codecogs.com/gif.latex?O_t=\text { Onset event at time bin } t " /> 
-- <img src="https://latex.codecogs.com/gif.latex?s=\text { senso
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;D(x,y,d) = |I_l(x,y)-I_r(x-d,y)|^2 />
+<a href="https://www.codecogs.com/eqnedit.php?latex=D(x,y,d)&space;=&space;|I_l(x,y)-I_r(x-d,y)|^2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?D(x,y,d)&space;=&space;|I_l(x,y)-I_r(x-d,y)|^2" title="D(x,y,d) = |I_l(x,y)-I_r(x-d,y)|^2" /></a>
+
 $$
 D(x,y,d) = |I_l(x,y)-I_r(x-d,y)|^2
 $$
