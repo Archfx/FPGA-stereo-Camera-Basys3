@@ -134,7 +134,8 @@ Auto Exposure Correction (AEC) has been disabled from the cameras by editing the
 <p align="center">
   <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/Demo_rectified_Colorbal_issue.gif">
   </p><p align="center">
-  <em>Demo -3</em>
+  <em>Demo -3  left side is the Disparity output right side is the average image of two cameras</em>
   </p>
 
+If we observe closely left camera brightness is too lower than the right hand side camera.
 
