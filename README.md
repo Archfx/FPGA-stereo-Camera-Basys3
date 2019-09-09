@@ -34,9 +34,9 @@ Hardware description languages(HDL) are not meant to be for rapid prototyping. T
 **SAD/SSD  theory** 
 
 Sum of Absolute difference and Sum of Squared Difference Disparity calculation theory is based on a simple geometric concept. Where they use the stereo vision to calculate the distance to the objects. For the implementation, two cameras should be on the same plane and they should not have any vertical offsets in their alignments.
-$$
+$
 D(x,y,d) = |I_l(x,y)-I_r(x-d,y)|^2
-$$
+$
 
 
 **Python implementation**
@@ -179,7 +179,6 @@ Auto Exposure Correction (AEC) has been disabled from the cameras by editing the
 </p>
 If we observe closely left camera brightness is too lower than the right hand side camera.
 
-<br/>
 <br/></br>
 
 **Resource Utilization**
