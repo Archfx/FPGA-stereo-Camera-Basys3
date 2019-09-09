@@ -37,7 +37,7 @@ Sum of Absolute difference and Sum of Squared Difference Disparity calculation t
 
 
 
-<a align="center" href="https://www.codecogs.com/eqnedit.php?latex=D(x,y,d)&space;=&space;|I_l(x,y)-I_r(x-d,y)|^2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?D(x,y,d)&space;=&space;|I_l(x,y)-I_r(x-d,y)|^2" title="Sum of Squred difference" /></a>
+<a  href="https://www.codecogs.com/eqnedit.php?latex=D(x,y,d)&space;=&space;|I_l(x,y)-I_r(x-d,y)|^2" target="_blank"><img align="center" src="https://latex.codecogs.com/gif.latex?D(x,y,d)&space;=&space;|I_l(x,y)-I_r(x-d,y)|^2" title="Sum of Squred difference" /></a>
 
 **Python implementation**
 
