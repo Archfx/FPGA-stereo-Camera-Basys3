@@ -178,17 +178,35 @@ If we observe closely left camera brightness is too lower than the right hand si
 **Resource Utilization**
 
 Basys 3 is a entry level FPGA board. Hence it is not designed for image processing tasks. The Challange here was to run complex image processing algorithm on limited resources. Basys 3 Trainer FPGA board consists of following resources.
-```markdown
-| Resource  |   |
-|---|---|
-| LUT  |   |
-| LUTRAM  |   |
-| FF  |   |
-| BRAM  |   |
-| DSP  |   |
-|   |   |
-|   |   |
-|   |   |
-```
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky">Tables</th>
+    <th class="tg-c3ow">Are</th>
+    <th class="tg-dvpl">Cool</th>
+  </tr>
+  <tr>
+    <td class="tg-0pky">col 1 is</td>
+    <td class="tg-c3ow">left-aligned</td>
+    <td class="tg-dvpl">$1600</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">col 2 is</td>
+    <td class="tg-c3ow">centered</td>
+    <td class="tg-dvpl">$12</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">col 3 is</td>
+    <td class="tg-c3ow">right-aligned</td>
+    <td class="tg-dvpl">$1</td>
+  </tr>
+</table>
 
 
