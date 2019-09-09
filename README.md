@@ -221,4 +221,11 @@ Basys 3 is a entry level FPGA board. Hence it is not designed for image processi
   </tr>
 </table>
 
+The main bottle necks were the Block memory and the LUTRAM.  Basys 3 has 1,800Kbits of memory in 50 cells as 36,000bits in each cell. We are getting the camera output in YCbCr format. Here Y is the gray scale image of individual pixel size 4bits.
 
+    Memory requirement calculation
+    For left image : 320x240x4 bits
+    For right image : 320x240x4 bits
+    For Average image : 320x240x4 bits
+    For Disparity image : 320x240x8 bits
+    Total memory required : 1,536,000 bits/1,800 000 bits
