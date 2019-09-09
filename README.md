@@ -31,9 +31,13 @@ This project has 3 major sections
 
 Hardware description languages(HDL) are not meant to be for rapid prototyping. Therefore, in this case, I have used python as the prototyping tool. The SAD algorithm was implemented on python from scratch without using any external library. I refrained from using 2D image arrays to store data because then the HDL implementation is straight forward.
 
-**SAD theory** 
+**SAD/SSD  theory** 
 
-Sum of Absolute difference is based on a simple geometric concept. Where they use the stereo vision to calculate the distance to the objects. For the implementation, two cameras should be on the same plane and they should not have any vertical offsets in their alignments.
+Sum of Absolute difference and Sum of Squared Difference Disparity calculation theory is based on a simple geometric concept. Where they use the stereo vision to calculate the distance to the objects. For the implementation, two cameras should be on the same plane and they should not have any vertical offsets in their alignments.
+$$
+D(x,y,d) = |I_l(x,y)-I_r(x-d,y)|^2
+$$
+
 
 **Python implementation**
 
@@ -176,8 +180,8 @@ Auto Exposure Correction (AEC) has been disabled from the cameras by editing the
 If we observe closely left camera brightness is too lower than the right hand side camera.
 
 <br/>
-<br/>
-<br/>
+<br/></br>
+
 **Resource Utilization**
 
 Basys 3 is a entry level FPGA board. Hence it is not designed for image processing tasks. The Challange here was to run complex image processing algorithm on limited resources. Basys 3 Trainer FPGA board consists of following resources.
