@@ -170,7 +170,31 @@ Auto Exposure Correction (AEC) has been disabled from the cameras by editing the
 <p align="center">
   <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/Demo_rectified_Colorbal_issue.gif">
   <p align="center">
-  <em>Demo -3  left side is the Disparity output right side is the average image of two cameras</em>
+  <em>Demo -3  ( Left : Disparity output | Right : average image of two cameras )</em>
   </p>
 </p>
 If we observe closely left camera brightness is too lower than the right hand side camera.
+
+**Resource Utilization**
+
+Basys 3 is a entry level FPGA board. Hence it is not designed for image processing tasks. The Challange here was to run complex image processing algorithm on limited resources. Basys 3 Trainer FPGA board consists of following resources.
+| Resources | Available |
+|--|--|
+| LUT |  |
+|--|--|
+| LUTRAM |  |
+|--|--|
+| FlipFlop |  |
+|--|--|
+| BRAM |  |
+|--|--|
+| DSP |  |
+|--|--|
+|IO|  |
+|--|--|
+| BUFG |  |
+|--|--|
+| MMCM |  |
+|--|--|
+
+
