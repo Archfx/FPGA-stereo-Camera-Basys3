@@ -185,7 +185,7 @@ If we observe closely left camera brightness is too lower than the right hand si
 
 Basys 3 is a entry level FPGA board. Hence it is not designed for image processing tasks. The Challange here was to run complex image processing algorithm on limited resources. Basys 3 Trainer FPGA board consists of following resources.
 
-
+<p align="center">
 <table align="center" class="tg">
   <tr>
     <th class="tg-0pky">Resource</th>
@@ -224,7 +224,7 @@ Basys 3 is a entry level FPGA board. Hence it is not designed for image processi
     <td class="tg-0lax">5</td>
   </tr>
 </table>
-
+</p>
 The main bottle necks were the Block memory and the LUTRAM.  Basys 3 has 1,800Kbits of memory in 50 cells as 36,000bits in each cell. We are getting the camera output in YCbCr format. Here Y is the gray scale image of individual pixel size 4bits.
 
     Memory requirement calculation
