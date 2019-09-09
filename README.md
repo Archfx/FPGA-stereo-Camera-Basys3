@@ -229,3 +229,5 @@ The main bottle necks were the Block memory and the LUTRAM.  Basys 3 has 1,800Kb
     For Average image : 320x240x4 bits
     For Disparity image : 320x240x8 bits
     Total memory required : 1,536,000 bits/1,800 000 bits
+
+We cant process them images while it is in the BRAM because BRAM is FIFO (First In First Out) memory device. Therefor the Image sholud be loaded in a cache so that data can be accessed parallely. The cache can be created using the LUTRAM. The problem we have is the LUTRAM is insufficient to store two 320x240 images. Even the 160x120 size images cannot be stored to support SAD algorithm to compare.
