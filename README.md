@@ -175,7 +175,7 @@ Auto Exposure Correction (AEC) has been disabled from the cameras by editing the
 </p>
 If we observe closely left camera brightness is too lower than the right hand side camera.
 
-
+<br>
 
 **Resource Utilization**
 
