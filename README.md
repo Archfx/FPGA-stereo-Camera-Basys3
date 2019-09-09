@@ -247,17 +247,17 @@ Therefore a blockwise disparity calculation was used in order to utilize the ful
 
 ```diff
 - Although there are 9600 LUTRAMS are available we cannot ulilize 100% of that due to routing issues. 
-<p align="center">
-```
 
+```
+<p align="center">
   <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/routing_problm.png">
   <p align="center">
   <em>Routing failure</em>
   </p>
-  
 </p>
+<p align="center">
 <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/utilization.png">
   <p align="center">
-  <em>Blockwise disparity calculation Utilization</em>
+  <em>Blockwise disparity calculation Utilization at 320x240 resolution</em>
   </p>
 </p>
