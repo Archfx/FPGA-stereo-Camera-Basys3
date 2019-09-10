@@ -227,7 +227,7 @@ Therefore a blockwise disparity calculation was used in order to utilize the ful
   </p>
 </p>
 
-**Output**
+**VGA Output**
 
 The system outputs the generated disparity map using the VGA output of the FPGA.
 Following are recorded output from the monitor using a camera.
@@ -261,9 +261,14 @@ Auto Exposure Correction (AEC) has been disabled from the cameras by editing the
 </p>
 If we observe closely left camera brightness is too lower than the right hand side camera.
 
-<br/></br>
+After caliberation of exposure in cameras individually and improving the Image rectification module final output was in a good condition. There are noice and miss calculated points due to the inability of the cameras to identify the features correctly. But the output is smooth and clear.
 
-
+<p align="center">
+  <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/Bat.gif">
+  <p align="center">
+  <em>Demo -4  ( Left : Disparity output | Right : average image of two cameras )</em>
+  </p>
+</p>
 
 
 
