@@ -147,46 +147,11 @@ This was I2C driver was direcly ported to the Basys3 FPGA. Camera register confi
 
 When converting the functional verification module into synthesizable code due to limited functionalities in Verilog, VHDL was selected as the developing language.
 
-The system outputs the generated disparity map using the VGA output of the FPGA.
-Following are recorded output from the monitor using a camera.
-
-<p align="center">
-  <img width="460" height="300" src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/Bottle.gif">
-     <p align="center">
-     <em>Demo -1</em>
-     </p>
-</p>
-
-<p align="center">
-  <img width="460" height="300" src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/hand.gif">
-  <p align="center">
-  <em>Demo -2</em>
-  </p>
-</p>
-
-In both the demonstrations you may observe that camera exposure changes with the environement changes. Improvements are needed to fix this. It will reduce the noise in the output.
-Auto Exposure Correction (AEC) has been disabled from the cameras by editing the internal register modules. After disableing AEC, the result was much more clear and the noise was removed from the background.
-
-**Image Rectification and Camera Caliberation**
-
- The offsets of the two cameras are fixed using a image rectification module. Although the Automatic Exposure Caliberation is turned of one of the Cameras output is very darker while the other one is too bright. This should be corrected for the Disparity aldorithm to work correctly.
-
-<p align="center">
-  <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/Demo_rectified_Colorbal_issue.gif">
-  <p align="center">
-  <em>Demo -3  ( Left : Disparity output | Right : average image of two cameras )</em>
-  </p>
-</p>
-If we observe closely left camera brightness is too lower than the right hand side camera.
-
-<br/></br>
-
 **Resource Utilization**
 
 Basys 3 is a entry level FPGA board. Hence it is not designed for image processing tasks. The Challange here was to run complex image processing algorithm on limited resources. Basys 3 Trainer FPGA board consists of following resources.
 
-<p align="center">
-<table align="center" class="tg">
+<table class="tg">
   <tr>
     <th class="tg-0pky">Resource</th>
     <th class="tg-c3ow">Available</th>
@@ -224,7 +189,7 @@ Basys 3 is a entry level FPGA board. Hence it is not designed for image processi
     <td class="tg-0lax">5</td>
   </tr>
 </table>
-</p>
+
 The main bottle necks were the Block memory and the LUTRAM.  Basys 3 has 1,800Kbits of memory in 50 cells as 36,000bits in each cell. We are getting the camera output in YCbCr format. Here Y is the gray scale image of individual pixel size 4bits.
 
     Memory requirement calculation
@@ -261,3 +226,44 @@ Therefore a blockwise disparity calculation was used in order to utilize the ful
   <em>Blockwise disparity calculation Utilization at 320x240 resolution</em>
   </p>
 </p>
+
+**Output**
+
+The system outputs the generated disparity map using the VGA output of the FPGA.
+Following are recorded output from the monitor using a camera.
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/Bottle.gif">
+     <p align="center">
+     <em>Demo -1</em>
+     </p>
+</p>
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/hand.gif">
+  <p align="center">
+  <em>Demo -2</em>
+  </p>
+</p>
+
+In both the demonstrations you may observe that camera exposure changes with the environement changes. Improvements are needed to fix this. It will reduce the noise in the output.
+Auto Exposure Correction (AEC) has been disabled from the cameras by editing the internal register modules. After disableing AEC, the result was much more clear and the noise was removed from the background.
+
+**Image Rectification and Camera Caliberation**
+
+ The offsets of the two cameras are fixed using a image rectification module. Although the Automatic Exposure Caliberation is turned of one of the Cameras output is very darker while the other one is too bright. This should be corrected for the Disparity aldorithm to work correctly.
+
+<p align="center">
+  <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/Demo_rectified_Colorbal_issue.gif">
+  <p align="center">
+  <em>Demo -3  ( Left : Disparity output | Right : average image of two cameras )</em>
+  </p>
+</p>
+If we observe closely left camera brightness is too lower than the right hand side camera.
+
+<br/></br>
+
+
+
+
+
