@@ -141,7 +141,7 @@ OV7670 dual camera mount was designed using a cad tool and 3D printed to mount t
 **Camera configuration**
 
 OV7670 camera module comes with I2C interface to configure it's internal registers. The problem here is we are using two cameras with the same type. By taking the advantage of paralel hardware implementation on FPGA two seperate I2C buses were used for the dual camera intergration. Fortunatly prioir work related to OV7670 Camera intergration to Zedboard FPGA has been done by the Engineer [Mike Field](https://github.com/hamsternz) at [here](http://hamsterworks.co.nz/mediawiki/index.php/OV7670_camera). 
-This was I2C driver was direcly ported to the Basys3 FPGA. Camera register configuration was done inorder to get required output from the Camera.
+This I2C driver was direcly ported to the Basys3 FPGA. Camera register configuration was done inorder to get required output from the Camera.
 
 ## Real-time depth map generation on FPGA
 
@@ -267,6 +267,13 @@ After caliberation of exposure in cameras individually and improving the Image r
   <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/Bat.gif">
   <p align="center">
   <em>Demo -4  ( Left : Disparity output | Right : average image of two cameras )</em>
+  </p>
+</p>
+
+<p align="center">
+  <img src="https://github.com/Archfx/FPGA-DepthMap-Basys3/blob/320x240/IMG/studio.gif">
+  <p align="center">
+  <em>Optimized system demo  ( Left : Disparity output | Right : average image of two cameras )</em>
   </p>
 </p>
 
