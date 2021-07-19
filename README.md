@@ -1,9 +1,23 @@
 
 # DepthMap generation on FPGA
 
-```diff
-- This project is still in Progress
+## Cite this work
+
+Jayasena, A., 2021. Register Transfer Level Disparity generator with Stereo Vision. Journal of Open Research Software, 9(1), p.18. DOI: http://doi.org/10.5334/jors.339
+
 ```
+Citation (bibtex) [Switch view]@article{Jayasena_2021,
+	doi = {10.5334/jors.339},
+	url = {https://doi.org/10.5334%2Fjors.339},
+	year = 2021,
+	publisher = {Ubiquity Press, Ltd.},
+	volume = {9},
+	author = {Aruna Jayasena},
+	title = {Register Transfer Level Disparity generator with Stereo Vision},
+	journal = {Journal of Open Research Software}
+} 
+```
+## About
 
 
 Most of the image processing projects in academia has been done on higher-end FPGA's with a considerable amount of resources. The main objective of this project is to implement a reliable embedded system on a lower end FPGA with limited resources. This project is based on Disparity calculation based on SAD (Sum of Absolute Difference) algorithm and creating a depth map.
